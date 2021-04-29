@@ -43,20 +43,28 @@ func main() {
 		maxValue, err = strconv.Atoi(maxInput)
 
 		// if error, then restart loop
-		if err != nil {
+		switch {
+		case err != nil:
 			// output
 			fmt.Println("That's not a  number, try again!")
 			fmt.Print("How high do you want the number range to be (0 to ?): ")
-		} else if maxValue <= 0 {
+			return
+		case maxValue <= 0:
 			// output
 			fmt.Println("Please enter a positive number, try again!")
 			fmt.Print("How high do you want the number range to be (0 to ?): ")
-		} else {
+		case maxValue > 0:
 			// calls procedure
 			RollDie(maxValue)
 			break
-		}
+		default:
+		    // error catch
+		    fmt.Println("Sorry, please try again!")
+	    }
+	    // leave for loop
+	    break
 	}
+	// program closes
 	fmt.Println("")
 	fmt.Println("Done.")
 }
